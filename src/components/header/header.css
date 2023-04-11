@@ -1,0 +1,20 @@
+.Header{
+    height: 75px;
+    display: flex;
+    align-items: center;
+}
+.Header-nav{
+    position: absolute;
+    right: 250px;
+}
+.link{
+    color:#B8BECD !important;
+    font-size: 16px;
+    text-decoration: none !important;
+}
+.Header-logo{
+    display: flex;
+text-align: center;
+align-items: center;
+margin: 250px;
+}
