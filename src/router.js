@@ -24,7 +24,7 @@ export const useRouter = () => {
 
             {/* secure */}
 
-            <Route path='/sign' element={<Login/>} />
+            <Route path='/sign' element={<Home/>} />
             <Route path='/' element={<Home/>} />
         </Routes>
     )

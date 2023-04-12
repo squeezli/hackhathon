@@ -1,13 +1,14 @@
+import React from "react"
 import { Modal, Form, Button } from "react-bootstrap"
-import { useSignIn } from 'react-auth-kit'
-import './modalSignIn.css'
 import { useHttp } from "../../hooks/http.hook"
-import React, { useState } from "react"
+import { useSignIn } from 'react-auth-kit'
+import {Link} from 'react-router-dom'
+import './modalSignIn.css'
 
 export const ModalSignIn = (props) => {
     const signIn = useSignIn()
     const { request, loading } = useHttp()
-    const [formData, setFormData] = useState({ email: '', password: '' })
+    const [formData, setFormData] = React.useState({ email: '', password: '' })
 
     const onSubmit = React.useCallback(async () => {
         try {
@@ -20,9 +21,9 @@ export const ModalSignIn = (props) => {
                 refreshToken: fetched.refreshToken,
                 refreshTokenExpireIn: fetched.refreshTokenExpireIn
             })
+            props.onHide()
         } catch (error) { }
     }, [request])
-
 
 
     return (
@@ -58,7 +59,7 @@ export const ModalSignIn = (props) => {
 
                     <div className="footerText">
                         Нет аккаунта?
-                        <Button variant="link">Зарегистрируйся!</Button>
+                        <Link to={'/registration'}><Button variant="link" onClick={()=>props.onHide()}>Зарегистрируйся!</Button></Link>
                     </div>
 
                 </Modal.Footer>

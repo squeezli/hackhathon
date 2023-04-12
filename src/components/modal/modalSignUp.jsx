@@ -1,23 +1,31 @@
 import React from "react"
-import { Modal, Form, Button } from "react-bootstrap"
+import { Modal, Form, Button, Alert } from "react-bootstrap"
 import './modalSignIn.css'
 import { useHttp } from "../../hooks/http.hook"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 export const ModalSignUp = (props) => {
 
     const { request } = useHttp()
     const navigate = useNavigate()
 
-    const [form, setFormData] = React.useState({ fio: '', password: '', email: '' })
+    const [form, setFormData] = React.useState({ fio: '', password: '', email: '', repeatPassword: '' })
+    const [showAlert, setShowAlert] = React.useState(false)
 
     const register = React.useCallback(async () => {
         try {
-            // const fetched = await request(`/api/`, 'POST', {...form})
-            console.log('sign')
-            navigate("/sign")
+            if (form.repeatPassword === form.password) {
+                const fetched = await request(`/api/`, 'POST', { ...form })
+                navigate("/sign")
+                return props.onHide()
+            }
+            return (setShowAlert(true))
         } catch (error) { console.log(error) }
     }, [form, request])
+
+    const changeFormHandler = event => {
+        setFormData({ ...form, [event.target.name]: event.target.value })
+    }
 
     return (
         <>
@@ -32,12 +40,18 @@ export const ModalSignUp = (props) => {
                                 type="text"
                                 placeholder="ФИО"
                                 autoFocus
+                                name="fio"
+                                value={form.fio}
+                                onChange={changeFormHandler}
                             />
                         </Form.Group>
                         <Form.Group className="mb-5" controlId="email">
                             <Form.Control className="formControl"
                                 type="email"
                                 placeholder="Email"
+                                name="email"
+                                value={form.email}
+                                onChange={changeFormHandler}
                             />
                         </Form.Group>
                         <Form.Group
@@ -45,6 +59,10 @@ export const ModalSignUp = (props) => {
                             controlId="password"
                         >
                             <Form.Control className="formControl"
+                                type="password"
+                                name="password"
+                                value={form.password}
+                                onChange={changeFormHandler}
                                 placeholder="Введите пароль" />
                         </Form.Group>
                         <Form.Group
@@ -52,6 +70,10 @@ export const ModalSignUp = (props) => {
                             controlId="repeatPassword"
                         >
                             <Form.Control className="formControl"
+                                type="password"
+                                name='repeatPassword'
+                                value={form.repeatPassword}
+                                onChange={changeFormHandler}
                                 placeholder="Повторите пароль" />
                         </Form.Group>
                     </Form>
@@ -66,12 +88,15 @@ export const ModalSignUp = (props) => {
 
                     <div className="footerText">
                         Есть аккаунт?
-                        <Button variant="link">Войти!</Button>
+                        <Link to={'/sign'}><Button variant="link" onClick={() => props.onHide()}>Войти!</Button></Link>
                     </div>
 
                 </Modal.Footer>
+{/* 
+            {showAlert && <Alert variant="danger">Пароли не совпадают</Alert>} */}
+            </Modal >
 
-            </Modal>
+
         </>
     )
 }
