@@ -1,7 +1,29 @@
 import { Modal, Form, Button } from "react-bootstrap"
+import { useSignIn } from 'react-auth-kit'
 import './modalSignIn.css'
+import { useHttp } from "../../hooks/http.hook";
+import React, { useState } from "react"
 
 export const ModalSignIn = (props) => {
+    const signIn = useSignIn()
+    const { request, loading } = useHttp();
+    const [formData, setFormData] = useState({ email: '', password: '' })
+
+    const onSubmit = React.useCallback(async () => {
+        try {
+            const fetched = await request(`/api/`, 'POST', { ...formData });
+            signIn({
+                token: fetched.token,
+                expiresIn: fetched.expiresIn,
+                tokenType: "Bearer",
+                authState: fetched.authUserState,
+                refreshToken: fetched.refreshToken,
+                refreshTokenExpireIn: fetched.refreshTokenExpireIn
+            })
+        } catch (error) { }
+    }, [request]);
+
+
 
     return (
         <>
@@ -28,11 +50,11 @@ export const ModalSignIn = (props) => {
                 </Modal.Body>
                 <Modal.Footer>
 
-                    <Button variant="outline-success" className="footerButton" >
+                    <Button variant="outline-success" className="footerButton" onClick={() => onSubmit()}>
                         Войти
                     </Button>
 
-                    <br/>
+                    <br />
 
                     <div className="footerText">
                         Нет аккаунта?
