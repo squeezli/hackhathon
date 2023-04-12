@@ -24,7 +24,7 @@ export const Home = () => {
                         <div className="blockOne__main">
                             <p>Соцсети, реклама</p>
                             <p>Разработка, it</p>
-                            <p>Аудио,видио</p>
+                            <p>Аудио,видео</p>
                             <p>Тексты и перевод</p>
                         </div>
                         <div className="blockTwo__main">

@@ -13,6 +13,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    cursor: default;
 }
 .header__conten{
     width: 100%;
