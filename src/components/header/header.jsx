@@ -28,20 +28,20 @@ export const Header = () => {
 
             <div className="Header-nav">
 
-                <Link className="link" to={'/orders'} variant="link">Заказы</Link>{' '}
-                <Link className="link" to={'/performers'} variant="link">Исполнители</Link>{' '}
-                <Link className="link" to={'/vacancy'} variant="link">Вакансии</Link>{' '}
+                <Link to={'/orders'} > <Button className="link" variant="link">Заказы</Button></Link>{' '}
+                <Link to={'/performers'} > <Button className="link" variant="link">Исполнители</Button></Link>{' '}
+                <Link to={'/vacancy'} > <Button className="link" variant="link">Вакансии </Button></Link>{' '}
 
-                {console.log(isAuthenticated())}
+                    {console.log(isAuthenticated())}
 
-                {!isAuthenticated() && <>
-                    <Button variant="outline-warning" onClick={() => setShowSignIn(true)}>Вход</Button> {' '}
-                    <Button variant="warning" onClick={() => setShowSignUp(true)}>Регистрация</Button>
-                    <ModalSignIn show={showSignIn} onHide={() => setShowSignIn(false)} />
-                    <ModalSignUp show={showSignUp} onHide={() => setShowSignUp(false)} />
-                </>}
+                    {!isAuthenticated() && <>
+                        <Button variant="outline-warning" onClick={() => setShowSignIn(true)}>Вход</Button> {' '}
+                        <Button variant="warning" onClick={() => setShowSignUp(true)}>Регистрация</Button>
+                        <ModalSignIn show={showSignIn} onHide={() => setShowSignIn(false)} />
+                        <ModalSignUp show={showSignUp} onHide={() => setShowSignUp(false)} />
+                    </>}
 
-                {isAuthenticated() && <Button variant="warning" onClick={() => signOut()}>Выход</Button>}
+                    {isAuthenticated() && <Button variant="warning" onClick={() => signOut()}>Выход</Button>}
 
             </div>
 
