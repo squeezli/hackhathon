@@ -49,8 +49,8 @@ export const ModalSignUp = (props) => {
                     <br/>
 
                     <div className="footerText">
-                        Нет аккаунта?
-                        <Button variant="link">Зарегистрируйся!</Button>
+                         Есть аккаунта?
+                        <Button variant="link">Войти!</Button>
                     </div>
 
                 </Modal.Footer>
