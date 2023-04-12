@@ -1,17 +1,17 @@
 import { Modal, Form, Button } from "react-bootstrap"
 import { useSignIn } from 'react-auth-kit'
 import './modalSignIn.css'
-import { useHttp } from "../../hooks/http.hook";
+import { useHttp } from "../../hooks/http.hook"
 import React, { useState } from "react"
 
 export const ModalSignIn = (props) => {
     const signIn = useSignIn()
-    const { request, loading } = useHttp();
+    const { request, loading } = useHttp()
     const [formData, setFormData] = useState({ email: '', password: '' })
 
     const onSubmit = React.useCallback(async () => {
         try {
-            const fetched = await request(`/api/`, 'POST', { ...formData });
+            const fetched = await request(`/api/`, 'POST', { ...formData })
             signIn({
                 token: fetched.token,
                 expiresIn: fetched.expiresIn,
@@ -21,7 +21,7 @@ export const ModalSignIn = (props) => {
                 refreshTokenExpireIn: fetched.refreshTokenExpireIn
             })
         } catch (error) { }
-    }, [request]);
+    }, [request])
 
 
 

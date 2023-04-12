@@ -1,7 +1,23 @@
+import React from "react"
 import { Modal, Form, Button } from "react-bootstrap"
 import './modalSignIn.css'
+import { useHttp } from "../../hooks/http.hook"
+import { useNavigate } from "react-router-dom"
 
 export const ModalSignUp = (props) => {
+
+    const { request } = useHttp()
+    const navigate = useNavigate()
+
+    const [form, setFormData] = React.useState({ fio: '', password: '', email: '' })
+
+    const register = React.useCallback(async () => {
+        try {
+            // const fetched = await request(`/api/`, 'POST', {...form})
+            console.log('sign')
+            navigate("/sign")
+        } catch (error) { console.log(error) }
+    }, [form, request])
 
     return (
         <>
@@ -42,14 +58,14 @@ export const ModalSignUp = (props) => {
                 </Modal.Body>
                 <Modal.Footer>
 
-                    <Button variant="outline-success" className="footerButton" >
-                        Войти
+                    <Button variant="outline-success" className="footerButton" onClick={() => register()}>
+                        Регистрация
                     </Button>
 
-                    <br/>
+                    <br />
 
                     <div className="footerText">
-                         Есть аккаунта?
+                        Есть аккаунт?
                         <Button variant="link">Войти!</Button>
                     </div>
 

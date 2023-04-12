@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-
 import {Home} from "./pages/Home/Home.jsx";
+
 import { RequireAuth } from "react-auth-kit";
 import { Login } from "./pages/Login/Login.jsx"
 
@@ -10,13 +10,13 @@ export const useRouter = () => {
         <Routes>
             {/* secure */}
             <Route path="/profile" element={
-                <RequireAuth loginPath="/login">
+                <RequireAuth loginPath="/sign">
                     <Home />
                 </RequireAuth>
             } />
 
             <Route path="/task/form" element={
-                <RequireAuth loginPath="/login">
+                <RequireAuth loginPath="/sign">
                     <Home />
                 </RequireAuth>
             } />
@@ -24,7 +24,7 @@ export const useRouter = () => {
 
             {/* secure */}
 
-            <Route path='/login' element={<Login/>} />
+            <Route path='/sign' element={<Login/>} />
             <Route path='/' element={<Home/>} />
         </Routes>
     )

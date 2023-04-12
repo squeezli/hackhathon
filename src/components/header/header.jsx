@@ -7,6 +7,7 @@ import { ModalSignUp } from '../modal/modalSignUp'
 import { useIsAuthenticated } from 'react-auth-kit'
 
 import { useSignOut } from 'react-auth-kit'
+import { Link } from 'react-router-dom'
 
 export const Header = () => {
 
@@ -20,16 +21,16 @@ export const Header = () => {
     return (
         <div className='Header'>
 
-            <div className="Header-logo">
-                <div className="Header-link">WORKMAN</div> {" "}
+            <Link className="Header-logo" to="/">
+                <div className="Header-link link" variant='link'>WORKMAN</div> {" "}
                 <img src={logo} alt="" />
-            </div>
+            </Link>
 
             <div className="Header-nav">
 
-                <Button className="link" variant="link">Заказы</Button>
-                <Button className="link" variant="link">Исполнители</Button>
-                <Button className="link" variant="link">Вакансии</Button>
+                <Link className="link" to={'/orders'} variant="link">Заказы</Link>{' '}
+                <Link className="link" to={'/performers'} variant="link">Исполнители</Link>{' '}
+                <Link className="link" to={'/vacancy'} variant="link">Вакансии</Link>{' '}
 
                 {console.log(isAuthenticated())}
 

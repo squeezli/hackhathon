@@ -1,8 +1,4 @@
 import React from "react";
-import Button from 'react-bootstrap/Button';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
 import img from '../../img/Thousand-03.png'
 import "./Home.css";
@@ -24,7 +20,7 @@ export const Home = () => {
                         <div className="blockOne__main">
                             <p>Соцсети, реклама</p>
                             <p>Разработка, it</p>
-                            <p>Аудио,видио</p>
+                            <p>Аудио,видео</p>
                             <p>Тексты и перевод</p>
                         </div>
                         <div className="blockTwo__main">

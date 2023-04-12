@@ -24,7 +24,7 @@
 .footerButton {
     /* align-items: center; */
     margin: 0 auto !important;
-    width: 100px !important;
+    min-width: 100px !important;
     justify-content: center !important;
 }
 
