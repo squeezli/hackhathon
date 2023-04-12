@@ -2,7 +2,7 @@ import React from "react"
 import { Modal, Form, Button } from "react-bootstrap"
 import { useHttp } from "../../hooks/http.hook"
 import { useSignIn } from 'react-auth-kit'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './modalSignIn.css'
 
 export const ModalSignIn = (props) => {
@@ -25,6 +25,9 @@ export const ModalSignIn = (props) => {
         } catch (error) { }
     }, [request])
 
+    const changeFormHandler = event => {
+        setFormData({ ...formData, [event.target.name]: event.target.value })
+    }
 
     return (
         <>
@@ -34,17 +37,22 @@ export const ModalSignIn = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <Form.Group className="mb-5" controlId="exampleForm.ControlInput1">
+                        <Form.Group className="mb-5" controlId="email">
                             <Form.Control className="formControl"
                                 type="email"
+                                name='email'
+                                onChange={changeFormHandler}
                                 placeholder="Email"
                             />
                         </Form.Group>
                         <Form.Group
                             className="mb-4"
-                            controlId="exampleForm.ControlTextarea1"
+                            controlId="password"
                         >
                             <Form.Control className="formControl"
+                            onChange={changeFormHandler}
+                            name='password'
+                            type='password'
                                 placeholder="Пароль" />
                         </Form.Group>
                     </Form>
@@ -59,7 +67,7 @@ export const ModalSignIn = (props) => {
 
                     <div className="footerText">
                         Нет аккаунта?
-                        <Link to={'/registration'}><Button variant="link" onClick={()=>props.onHide()}>Зарегистрируйся!</Button></Link>
+                        <Link to={'/registration'}><Button variant="link" onClick={() => props.onHide()}>Зарегистрируйся!</Button></Link>
                     </div>
 
                 </Modal.Footer>

@@ -35,7 +35,7 @@ export const ModalSignUp = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <Form.Group className="mb-5" controlId="FIO">
+                        <Form.Group className="mb-5" controlId="fio">
                             <Form.Control className="formControl"
                                 type="text"
                                 placeholder="ФИО"
